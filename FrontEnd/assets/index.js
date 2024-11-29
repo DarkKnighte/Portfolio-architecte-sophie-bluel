@@ -7,14 +7,14 @@ const data = {
   // const imageUrl = works.map(work => work.imageUrl);
   // const category = works.map(work => work.category);
 
-  function renderFilters(categories) {
+  function renderCategory(categories) {
 
   window.addEventListener("DOMContentLoaded", async () => {
     data.works = await getWorks();
     // @TODO: Créer une fonction de récupération des catégories.
     data.categories = await getCategories();
     renderWorks(data.works);
-    renderFilters(data.categories);
+    renderCategory(data.categories);
     // Afficher les filtres de catégorie.
     return data.works, data.categories;
   })
@@ -34,18 +34,16 @@ const data = {
     const gallery = document.querySelector(".gallery");
     // @TODO : Boucler sur les works pour les afficher dans la galerie.
     works.forEach(work => {
-        gallery.innerHTML += `
-        <div class="work">
+        document.innerHTML(gallery) +=
+        `
             <img src="${work.image}" alt="${work.title}">
             <h3>${work.title}</h3>
             <p>${work.category}</p>
-        </div>
         `
     });
   }
 
   // @TODO: Créer une fonction de filtrage des works par catégorie.
-
   const boutonTrier = document.querySelector(".btn-trier");
   // version 1
   boutonTrier.addEventListener("click", function() {
@@ -56,10 +54,10 @@ const data = {
     console.log(works);
 });
   // version 2
-  boutonTrier.addEventListener("click", function() {
-    const works = categories.filter(function (categorie) {
-      return categorie;
-    });
-    console.log(works);
-  });
+  // boutonTrier.addEventListener("click", function() {
+  //   const works = categories.filter(function (categorie) {
+  //     return categorie;
+  //   });
+  //   console.log(works);
+  // });
   // @TODO: Associer un évènement à chaque filtre pour filtrer les works lorsqu'on clique dessus.
