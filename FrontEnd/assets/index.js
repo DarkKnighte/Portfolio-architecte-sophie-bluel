@@ -3,9 +3,9 @@ const data = {
     categories: []
   }
 
-  const title = works.map(work => work.title);
-  const imageUrl = works.map(work => work.imageUrl);
-  const category = works.map(work => work.category);
+  // const title = works.map(work => work.title);
+  // const imageUrl = works.map(work => work.imageUrl);
+  // const category = works.map(work => work.category);
 
   function renderFilters(categories) {
 
