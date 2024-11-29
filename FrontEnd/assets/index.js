@@ -34,12 +34,10 @@ const data = {
     const gallery = document.querySelector(".gallery");
     // @TODO : Boucler sur les works pour les afficher dans la galerie.
     works.forEach(work => {
-        document.innerHTML(gallery) +=
-        `
-            <img src="${work.image}" alt="${work.title}">
-            <h3>${work.title}</h3>
-            <p>${work.category}</p>
-        `
+        document.querySelector(".gallery").innerHTML =
+            + '<img src="' + work.image + '" alt="' + work.title +'" />'
+            + '<h3>' + work.title + '</h3>'
+            + '<p>' + work.category + '</p>'
     });
   }
 
