@@ -43,7 +43,7 @@ const data = {
   // @TODO: Créer une fonction de filtrage des works par catégorie.
 
   const boutonTrier = document.querySelector(".btn-trier");
-
+  // version 1
   boutonTrier.addEventListener("click", function() {
     const works = Array.from(data.works);
     works.sort(function(a, b) {
@@ -51,5 +51,11 @@ const data = {
     })
     console.log(works);
 });
-
+  // version 2
+  boutonTrier.addEventListener("click", function() {
+    const works = categories.filter(function (categorie) {
+      return categorie;
+    });
+    console.log(works);
+  });
   // @TODO: Associer un évènement à chaque filtre pour filtrer les works lorsqu'on clique dessus.
