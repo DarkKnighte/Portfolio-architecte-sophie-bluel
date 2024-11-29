@@ -12,6 +12,7 @@ const data = {
     renderWorks(data.works);
     renderFilters(data.categories);
     // Afficher les filtres de catégorie.
+    return data.works, data.categories;
   })
 }
 
