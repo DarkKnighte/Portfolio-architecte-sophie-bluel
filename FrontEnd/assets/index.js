@@ -10,8 +10,8 @@ const data = {
     // @TODO: Créer une fonction de récupération des catégories.
     data.categories = await getCategories();
     renderWorks(data.works);
-    // Afficher les filtres de catégorie.
     renderFilters(data.categories);
+    // Afficher les filtres de catégorie.
   })
 }
 
