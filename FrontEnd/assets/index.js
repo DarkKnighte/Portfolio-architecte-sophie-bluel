@@ -1,61 +1,86 @@
 const data = {
-    works: [],
-    categories: []
+  works: [],
+  categories: []
+};
+
+window.addEventListener("DOMContentLoaded", async () => {
+  // On récupère les œuvres et les catégories depuis l'API qu'on stocke globalement dans l'objet data.
+  data.works = await getWorks();
+  data.categories = await getCategories();
+  // On affiche les œuvres et les filtres de catégories.
+  renderWorks(data.works);
+  const token = localStorage.getItem("token");
+  if (!token) {
+    renderFilters(data.categories);
+  } else {
+    // @TODO : Afficher l'interface en mode connecté.
   }
+});
 
-  // const title = works.map(work => work.title);
-  // const imageUrl = works.map(work => work.imageUrl);
-  // const category = works.map(work => work.category);
+async function getWorks() {
+  const response = await fetch("http://localhost:5678/api/works");
+  return await response.json();
+}
 
-  function renderCategory(categories) {
+async function getCategories() {
+  const response = await fetch("http://localhost:5678/api/categories");
+  return await response.json();
+}
 
-  window.addEventListener("DOMContentLoaded", async () => {
-    data.works = await getWorks();
-    // @TODO: Créer une fonction de récupération des catégories.
-    data.categories = await getCategories();
-    renderWorks(data.works);
-    renderCategory(data.categories);
-    // Afficher les filtres de catégorie.
-    return data.works, data.categories;
+/**
+* Affiche les filtres de catégories et ajoute les écouteurs d'événements sur chacun d'entre eux.
+* @param categories Liste des catégories à afficher en tant que filtres
+*/
+function renderFilters(categories) {
+  const filters = document.querySelector(".filters");
+  // Ajoute un bouton pour afficher toutes les œuvres, sans filtre.
+  filters.innerHTML = `<button class="filter" data-category-id="0">Tous</button>`;
+  // On itère sur les catégories pour afficher un bouton par catégorie.
+  categories.forEach(category => {
+    filters.innerHTML += `<button class="filter" data-category-id="${category.id}">${category.name}</button>`;
+  });
+  const buttons = document.querySelectorAll(".filter");
+  // On ajoute un écouteur d'événement sur chaque bouton pour filtrer les œuvres.
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      // On récupère l'identifiant de la catégorie à filtrer depuis l'attribut data-category-id du bouton.
+      const { categoryId } = button.dataset;
+      // On filtre les œuvres en fonction de la catégorie sélectionnée.
+      const filteredWorks = filterWorks(data.works, Number(categoryId));
+      // On affiche les œuvres filtrées.
+      renderWorks(filteredWorks);
+    })
   })
 }
 
-  async function getWorks() {
-    const response = await fetch("http://localhost:5678/api/works");
-    return await response.json();
-  }
+/**
+* Affiche les œuvres dans la galerie
+* @param works Liste des œuvres à afficher
+*/
+function renderWorks(works) {
+  const gallery = document.querySelector(".gallery");
+  // On vide la galerie avant d'ajouter les nouvelles œuvres.
+  gallery.innerHTML = "";
+  // On itère sur les œuvres pour afficher une figure par œuvre.
+  works.forEach(work => {
+    document.querySelector(".gallery").innerHTML += `
+    <figure>
+      <img src="${work.imageUrl}" alt="${work.title}">
+      <figcaption>${work.title}</figcaption>
+    </figure>
+  `;
+  });
+}
 
-  async function getCategories() {
-    const response = await fetch("http://localhost:5678/api/categories");
-    return await response.json();
+/**
+* Filtrer les œuvres par catégorie.
+* @param works Liste des œuvres à filtrer
+* @param categoryId Identifiant de la catégorie à utiliser pour le filtrage
+* @returns {[]} Liste des œuvres filtrées
+*/
+function filterWorks(works, categoryId) {
+  if (categoryId === 0) {
+    return works;
   }
-
-  function renderWorks(works) {
-    const gallery = document.querySelector(".gallery");
-    // @TODO : Boucler sur les works pour les afficher dans la galerie.
-    works.forEach(work => {
-        document.querySelector(".gallery").innerHTML =
-            + '<img src="' + work.image + '" alt="' + work.title +'" />'
-            + '<h3>' + work.title + '</h3>'
-            + '<p>' + work.category + '</p>'
-    });
-  }
-
-  // @TODO: Créer une fonction de filtrage des works par catégorie.
-  const boutonTrier = document.querySelector(".btn-trier");
-  // version 1
-  boutonTrier.addEventListener("click", function() {
-    const works = Array.from(data.works);
-    works.sort(function(a, b) {
-        return a.title.localeCompare(b.title);
-    })
-    console.log(works);
-});
-  // version 2
-  // boutonTrier.addEventListener("click", function() {
-  //   const works = categories.filter(function (categorie) {
-  //     return categorie;
-  //   });
-  //   console.log(works);
-  // });
-  // @TODO: Associer un évènement à chaque filtre pour filtrer les works lorsqu'on clique dessus.
+  return works.filter(work => work.categoryId === categoryId);
+}
