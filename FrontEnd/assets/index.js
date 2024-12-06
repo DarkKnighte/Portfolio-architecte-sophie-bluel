@@ -14,7 +14,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     renderFilters(data.categories);
   } else {
     // @TODO : Afficher l'interface en mode connecté.
-    renderFilters(data.categories);
   }
 });
 
