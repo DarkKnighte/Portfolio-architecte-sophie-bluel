@@ -93,6 +93,16 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+  cursor: pointer;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+}
+
+nav a:hover {
+  color: #B1663C;
 }
 
 li:hover {
@@ -185,4 +195,3 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
-
