@@ -1,6 +1,11 @@
 // @TODO : Créer le formulaire de connexion
 // @TODO : Ajouter un écouteur d'événement sur le formulaire pour intercepter la soumission
-
+document.addEventListener('DOMContentLoaded', function() {
+  const loginForm = document.querySelector('#loginForm');
+  loginForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+  });
+});
 // Documentation : https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault
 // @TODO : Récupérer les valeurs des champs du formulaire
 // @TODO : Utiliser l'API Fetch pour envoyer une requête de type POST à l'URL http://localhost:5678/api/users/login avec les données du formulaire
