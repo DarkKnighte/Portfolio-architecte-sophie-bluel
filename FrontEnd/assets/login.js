@@ -1,16 +1,31 @@
 // @TODO : Créer le formulaire de connexion
 // @TODO : Ajouter un écouteur d'événement sur le formulaire pour intercepter la soumission
-document.addEventListener('DOMContentLoaded', function() {
-  const loginForm = document.querySelector('#loginForm');
-  loginForm.addEventListener('submit', function(event) {
+document.addEventListener("DOMContentLoaded", function () {
+  const loginForm = document.querySelector("#loginForm");
+  loginForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    console.log('Formulaire soumis');
+    console.log("Formulaire soumis");
   });
 });
 // Documentation : https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault
 // @TODO : Récupérer les valeurs des champs du formulaire
+/*
+const email = document.querySelector("#email").value;
+const password = document.querySelector("#password").value;
+ */
 // @TODO : Utiliser l'API Fetch pour envoyer une requête de type POST à l'URL http://localhost:5678/api/users/login avec les données du formulaire
 // Documentation : https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch
+/*
+fetch("ADRESSE DE LA ROUTE API", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    email: email,
+    password: password,
+});
+*/
 // @TODO : Afficher un message d'erreur si les identifiants sont incorrects
 // @TODO : Obtenir la réponse de l'API et stocker le token dans le localStorage
 // Documentation : https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage

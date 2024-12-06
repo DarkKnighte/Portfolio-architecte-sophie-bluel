@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   // On affiche les œuvres et les filtres de catégories.
   renderWorks(data.works);
   const token = localStorage.getItem("token");
-  if (!token) {
+  if (!token && data.categories.length) {
     renderFilters(data.categories);
   } else {
     // @TODO : Afficher l'interface en mode connecté.
@@ -18,13 +18,30 @@ window.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function getWorks() {
-  const response = await fetch("http://localhost:5678/api/works");
-  return await response.json();
+  // Exemple de gestion d'erreur avec try {} catch {}
+  try {
+    const response = await fetch("http://localhost:5678/api/works");
+    return await response.json();
+  } catch (error) {
+    console.error("Erreur lors de la récupération des œuvres", error);
+    alert("Une erreur est survenue lors de la récupération des œuvres.")
+  }
 }
 
 async function getCategories() {
-  const response = await fetch("http://localhost:5678/api/categories");
-  return await response.json();
+  // Exemple de gestion d'erreur avec try {} catch {}
+  try {
+    const response = await fetch("http://localhost:5678/api/categories");
+    // Exemple de gestion d'erreur avec if (response.ok) {} else {} avec une alerte pour l'utilisateur si le code de statut de la réponse n'est pas 200-299.
+    if (response.ok) {
+      return await response.json();
+    } else {
+      alert("Une erreur est survenue lors de la récupération des catégories.")
+    }
+  } catch (error) {
+    console.error("Erreur lors de la récupération des catégories", error);
+    alert("Une erreur est survenue lors de la récupération des catégories.")
+  }
 }
 
 /**
