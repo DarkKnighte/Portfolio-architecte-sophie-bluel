@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const loginForm = document.querySelector('#loginForm');
   loginForm.addEventListener('submit', function(event) {
     event.preventDefault();
+    console.log('Formulaire soumis');
   });
 });
 // Documentation : https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault
