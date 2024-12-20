@@ -33,5 +33,6 @@ if (!email || !password) {
   }
 // @TODO : Obtenir la réponse de l'API et stocker le token dans le localStorage
 // Documentation : https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage
+localStorage.setItem("token", response.token);
 // @TODO : Rediriger l'utilisateur vers la page d'accueil
 // Documentation : https://developer.mozilla.org/fr/docs/Web/API/Location
