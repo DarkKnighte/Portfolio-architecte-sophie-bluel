@@ -36,3 +36,4 @@ if (!email || !password) {
 localStorage.setItem("token", response.token);
 // @TODO : Rediriger l'utilisateur vers la page d'accueil
 // Documentation : https://developer.mozilla.org/fr/docs/Web/API/Location
+window.location.href = "http://localhost:5500/FrontEnd/index.html";
