@@ -1,40 +1,47 @@
-// @TODO : Créer le formulaire de connexion
-// @TODO : Ajouter un écouteur d'événement sur le formulaire pour intercepter la soumission
+// Attend que le DOM soit complètement chargé avant d'exécuter le code
 document.addEventListener("DOMContentLoaded", function () {
+  // Récupère le formulaire de connexion par son ID
   const loginForm = document.querySelector("#loginForm");
-  loginForm.addEventListener("submit", function (event) {
+
+  // Ajoute un écouteur d'événement sur la soumission du formulaire
+  loginForm.addEventListener("submit", async function (event) {
+    // Empêche le comportement par défaut du formulaire (rechargement de la page)
     event.preventDefault();
-    console.log("Formulaire soumis");
+
+    // Récupère les valeurs des champs email et mot de passe
+    const email = document.querySelector("#email").value;
+    const password = document.querySelector("#password").value;
+
+    // Appelle la fonction de connexion avec ces identifiants
+    await login(email, password);
   });
 });
-// Documentation : https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault
-// @TODO : Récupérer les valeurs des champs du formulaire
 
-const email = document.querySelector("#email").value;
-const password = document.querySelector("#password").value;
+// Fonction asynchrone qui gère la connexion
+async function login(email, password) {
+  // Envoie une requête POST à l'API de connexion
+  const response = await fetch("http://localhost:5678/api/users/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", // Spécifie que le corps de la requête est en JSON
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    })
+  });
 
-// @TODO : Utiliser l'API Fetch pour envoyer une requête de type POST à l'URL http://localhost:5678/api/users/login avec les données du formulaire
-// Documentation : https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch
+  // Si la réponse n'est pas OK (status différent de 200-299)
+  if (!response.ok) {
+    alert("Votre email ou mot de passe est incorrect");
+  }
 
-fetch(" http://localhost:5500/FrontEnd/login.html", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    email: email,
-    password: password,
-  })
-});
+  // Convertit la réponse en JSON
+  const data = await response.json();
 
-// @TODO : Afficher un message d'erreur si les identifiants sont incorrects
-if (!email || !password) {
-    console.error('Votre email ou mot de passe est incorrect');
-  } else {
-    // @TODO : Obtenir la réponse de l'API et stocker le token dans le localStorage
-    // Documentation : https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage
-    localStorage.setItem("token", response.token);
-    // @TODO : Rediriger l'utilisateur vers la page d'accueil
-    // Documentation : https://developer.mozilla.org/fr/docs/Web/API/Location
-    window.location.href = "http://localhost:5500/FrontEnd/index.html";
-   }
+  // Stocke le token d'authentification dans le localStorage
+  localStorage.setItem("token", data.token);
+
+  // Redirige vers la page d'accueil
+  window.location.href = "./index.html";
+}

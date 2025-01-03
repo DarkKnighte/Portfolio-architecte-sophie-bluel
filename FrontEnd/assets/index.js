@@ -12,8 +12,30 @@ window.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
   if (!token && data.categories.length) {
     renderFilters(data.categories);
-  } else {
-    // @TODO : Afficher l'interface en mode connecté.
+    } else {
+    // @TODO : Afficher les éléments en mode édition, soit en interagissant avec les classes...
+    function renderEditionMode() {
+      const edition = `<div class="modal">
+        <h1>Mode édition</h1>
+        <button id="edit">Editer</button>
+      </div>`;
+      document.body.insertAdjacentHTML("afterbegin", edition);
+    }
+    // @TODO : ...soit en créant et/ou modifiant le contenu des éléments directement via JavaScript.
+
+    renderEditionMode();
+    renderWorks(data.works);
+
+    const modal = document.querySelector("#modal");
+    const editButton = document.querySelector("#edit");
+    const quitButton = document.querySelector("#quit");
+
+    editButton.addEventListener("click", (event) => {
+      modal.showModal(); // Affiche la modal
+    });
+    quitButton.addEventListener("click", (event) => {
+      modal.close(); // Ferme la modal
+    });
   }
 });
 
@@ -101,3 +123,6 @@ function filterWorks(works, categoryId) {
   }
   return works.filter(work => work.categoryId === categoryId);
 }
+
+// @TODO : Ajouter une fonction pour afficher les oeuvres dans la modale.
+// @TODO : Ajouter une fonction pour gérer la suppression d'une œuvre.

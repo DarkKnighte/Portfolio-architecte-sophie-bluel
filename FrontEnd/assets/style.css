@@ -195,3 +195,13 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+
+/* @TODO: Ré-arranger le style...*/
+
+.hidden {
+	display: none;
+}
+
+.mode-edition {
+	display: block;
+}
