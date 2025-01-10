@@ -102,7 +102,7 @@ function renderWorksInModal(works) {
   works.forEach(work => {
     gallery.innerHTML += `
       <div>
-        <div>@TODO : Afficher l'image pour chaque élément.</div>
+        <img class="modal-image" src="${work.imageUrl}">
         <button class="delete" data-id="${work.id}">🗑️</button>
       </div>
   `;
@@ -120,11 +120,11 @@ function renderWorksInModal(works) {
  * Affiche le mode édition
  */
 function renderEditionMode() {
-  // const edition = `<div class="modal">
-  //       <h1>Mode édition</h1>
-  //       <button id="edit">Editer</button>
-  //     </div>`;
-  // document.body.insertAdjacentHTML("afterbegin", edition);
+  const edition = `<div class="modal">
+        <h1>Mode édition</h1>
+        <button id="edit">Editer</button>
+      </div>`;
+  document.body.insertAdjacentHTML("afterbegin", edition);
 
   // @TODO : Afficher la bannière en haut de page.
   const banner = `<div class="banner">

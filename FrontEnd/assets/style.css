@@ -206,6 +206,12 @@ footer nav ul {
   height: 59px;
 }
 
+.modal-image {
+  height: 102.57px;
+  width: 76.86px;
+  display: flex;
+}
+
 /* @TODO: Ré-arranger le style...*/
 
 .hidden {
