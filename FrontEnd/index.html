@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,7 +18,7 @@
         <ul>
           <li>projets</li>
           <li>contact</li>
-          <li><a href="login.html">login</a></li>
+          <li><a href="login.html" id="login">login</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
         </ul>
       </nav>
@@ -57,8 +58,16 @@
     </main>
     <aside>
       <dialog id="modal">
-        <h2>Ma modale</h2>
-        <button id="quit">Quitter</button>
+        <div class="modal-header">
+          <h2>Ma modale</h2>
+          <button id="quit">X</button>
+        </div>
+        <div class="modal-gallery">
+
+        </div>
+        <div class="modal-add">
+          <button id="add">Ajouter</button>
+        </div>
       </dialog>
     </aside>
     <footer>

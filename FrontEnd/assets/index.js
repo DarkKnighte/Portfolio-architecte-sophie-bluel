@@ -1,3 +1,4 @@
+
 const data = {
   works: [],
   categories: []
@@ -13,29 +14,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   if (!token && data.categories.length) {
     renderFilters(data.categories);
     } else {
-    // @TODO : Afficher les éléments en mode édition, soit en interagissant avec les classes...
-    function renderEditionMode() {
-      const edition = `<div class="modal">
-        <h1>Mode édition</h1>
-        <button id="edit">Editer</button>
-      </div>`;
-      document.body.insertAdjacentHTML("afterbegin", edition);
-    }
-    // @TODO : ...soit en créant et/ou modifiant le contenu des éléments directement via JavaScript.
-
     renderEditionMode();
-    renderWorks(data.works);
-
-    const modal = document.querySelector("#modal");
-    const editButton = document.querySelector("#edit");
-    const quitButton = document.querySelector("#quit");
-
-    editButton.addEventListener("click", (event) => {
-      modal.showModal(); // Affiche la modal
-    });
-    quitButton.addEventListener("click", (event) => {
-      modal.close(); // Ferme la modal
-    });
   }
 });
 
@@ -97,6 +76,7 @@ function renderFilters(categories) {
 * @param works Liste des œuvres à afficher
 */
 function renderWorks(works) {
+  console.log("Afficher les œuvres", works);
   const gallery = document.querySelector(".gallery");
   // On vide la galerie avant d'ajouter les nouvelles œuvres.
   gallery.innerHTML = "";
@@ -112,6 +92,61 @@ function renderWorks(works) {
 }
 
 /**
+ * Affiche les œuvres dans la galerie de la modale
+ * @param works Liste des œuvres à afficher
+ */
+function renderWorksInModal(works) {
+  const gallery = document.querySelector(".modal-gallery");
+  gallery.innerHTML = "";
+  // @TODO: Définir le HTML pour chaque élément (incluant la corbeille pour la suppression)
+  works.forEach(work => {
+    gallery.innerHTML += `
+      <div>
+        <div>@TODO : Afficher l'image pour chaque élément.</div>
+        <button class="delete" data-id="${work.id}">🗑️</button>
+      </div>
+  `;
+  });
+  // Gère la suppression d'une œuvre en cliquant sur la corbeille.
+  const buttons = document.querySelectorAll(".delete");
+  buttons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      deleteWork(Number(button.dataset.id)); // On convertit l'identifiant en nombre avant de le passer à la fonction deleteWork.
+    });
+  });
+}
+
+/**
+ * Affiche le mode édition
+ */
+function renderEditionMode() {
+  const edition = `<div class="modal">
+        <h1>Mode édition</h1>
+        <button id="edit">Editer</button>
+      </div>`;
+  document.body.insertAdjacentHTML("afterbegin", edition);
+
+  // @TODO : Afficher la bannière en haut de page.
+  // @TODO : Afficher le bouton pour ouvrir la modale au bon emplacement.
+
+  const modal = document.querySelector("#modal");
+  const editButton = document.querySelector("#edit");
+  const quitButton = document.querySelector("#quit");
+
+  editButton.addEventListener("click", (event) => {
+    modal.showModal(); // Affiche la modal
+    renderWorksInModal(data.works);
+  });
+  quitButton.addEventListener("click", (event) => {
+    modal.close(); // Ferme la modal
+  });
+
+  // @TODO : Changer le texte "Login" à "Logout" dans le header.
+  document.getElementById("login");
+  login.innerHTML = "Logout";
+}
+
+/**
 * Filtrer les œuvres par catégorie.
 * @param works Liste des œuvres à filtrer
 * @param categoryId Identifiant de la catégorie à utiliser pour le filtrage
@@ -124,5 +159,12 @@ function filterWorks(works, categoryId) {
   return works.filter(work => work.categoryId === categoryId);
 }
 
-// @TODO : Ajouter une fonction pour afficher les oeuvres dans la modale.
-// @TODO : Ajouter une fonction pour gérer la suppression d'une œuvre.
+function deleteWork(id) {
+  // @TODO: Envoyer une requête DELETE à l'API pour supprimer l'œuvre avec l'identifiant id et en utilisant le jeton d'authentification stocké dans le localStorage.
+  data.works = data.works.filter(work => work.id !== id); // On ne garde que les oeuvres dont l'identifiant est différent de celui à supprimer.
+  renderWorks(data.works); // On réaffiche les oeuvres après la suppression.
+  renderWorksInModal(data.works); // On réaffiche les oeuvres dans la modale après la suppression.
+}
+
+// @TODO : Revoir le style général.
+// @TODO : Mettre en place le mode édition.
