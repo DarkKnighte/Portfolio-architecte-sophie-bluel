@@ -120,13 +120,18 @@ function renderWorksInModal(works) {
  * Affiche le mode édition
  */
 function renderEditionMode() {
-  const edition = `<div class="modal">
-        <h1>Mode édition</h1>
-        <button id="edit">Editer</button>
-      </div>`;
-  document.body.insertAdjacentHTML("afterbegin", edition);
+  // const edition = `<div class="modal">
+  //       <h1>Mode édition</h1>
+  //       <button id="edit">Editer</button>
+  //     </div>`;
+  // document.body.insertAdjacentHTML("afterbegin", edition);
 
   // @TODO : Afficher la bannière en haut de page.
+  const banner = `<div class="banner">
+    <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
+    <p id="banner-edit"> Mode édition</p>
+    </div>`;
+  document.body.insertAdjacentHTML("afterbegin", banner);
   // @TODO : Afficher le bouton pour ouvrir la modale au bon emplacement.
 
   const modal = document.querySelector("#modal");
