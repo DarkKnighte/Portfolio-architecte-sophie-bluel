@@ -31,6 +31,10 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 }
 
+html {
+  background-color: #FFFEF8;
+}
+
 body {
     line-height: 1;
 }
@@ -216,7 +220,12 @@ input[type="submit"] {
 footer nav ul {
     display: flex;
     justify-content: flex-end;
-    margin: 2em
+    margin: 2em;
+    height: 60px;
+}
+
+footer {
+  background-color: white;
 }
 
 .banner {
@@ -245,13 +254,27 @@ footer nav ul {
 }
 
 .connect-btn {
-  font-weight: bold;
   color: white;
   background-color: #1D6154;
+  font-weight: bold;
   width: 179px;
   height: 36px;
+  margin-bottom: 28px;
   border-radius: 60px;
   border: none;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 379px;
+  margin-bottom: 37px;
+}
+
+.form-group input{
+  width: 379px;
+  height: 40px;
 }
 
 /* @TODO: Ré-arranger le style...*/
