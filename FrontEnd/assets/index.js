@@ -1,4 +1,5 @@
 
+
 const data = {
   works: [],
   categories: []
@@ -148,7 +149,15 @@ function renderEditionMode() {
 
   // @TODO : Changer le texte "Login" à "Logout" dans le header.
   document.getElementById("login");
-  login.innerHTML = "Logout";
+  login.innerHTML = "logout";
+  login.addEventListener("click", (event) => {
+    event.preventDefault();
+    localStorage.removeItem("token");
+    window.location.reload();
+  });
+
+  // Ajuste le style de la page pour laisser de la place pour la bannière en haut de page.
+  document.body.style.marginTop = "59px";
 }
 
 /**
@@ -164,12 +173,37 @@ function filterWorks(works, categoryId) {
   return works.filter(work => work.categoryId === categoryId);
 }
 
-function deleteWork(id) {
-  // @TODO: Envoyer une requête DELETE à l'API pour supprimer l'œuvre avec l'identifiant id et en utilisant le jeton d'authentification stocké dans le localStorage.
-  data.works = data.works.filter(work => work.id !== id); // On ne garde que les oeuvres dont l'identifiant est différent de celui à supprimer.
-  renderWorks(data.works); // On réaffiche les oeuvres après la suppression.
-  renderWorksInModal(data.works); // On réaffiche les oeuvres dans la modale après la suppression.
+async function deleteWork(id) {
+  try {
+    // Envoi d'une requête à l'API pour supprimer une oeuvre à partir de son identifiant :
+    const response = await fetch(`http://localhost:5678/api/works/${id}`, {
+      method: "DELETE",
+      headers: {
+        // Ajout du jeton d'authentification dans les headers de la requête :
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      }
+    });
+    // Si la réponse n'est pas OK (status différent de 200-299)
+    if (!response.ok) {
+      if (response.status === 401) {
+        alert("Vous n'êtes pas autorisé à supprimer cette œuvre.");
+      } else {
+        throw new Error("Une erreur inconnue est survenue.");
+      }
+    } else {
+      data.works = data.works.filter(work => work.id !== id); // On ne garde que les oeuvres dont l'identifiant est différent de celui à supprimer.
+      renderWorks(data.works); // On réaffiche les oeuvres après la suppression.
+      renderWorksInModal(data.works); // On réaffiche les oeuvres dans la modale après la suppression.
+    }
+  } catch (error) {
+    console.error("Erreur lors de la suppression de l'œuvre", error);
+    alert("Une erreur est survenue lors de la suppression de l'œuvre.")
+  }
 }
 
 // @TODO : Revoir le style général.
+// @TODO : Revoir le style de la modale.
+// @TODO : Créer la seconde modale pour ajouter une œuvre.
+// @TODO : Créer le formulaire d'ajout de l'œuvre.
+// @TODO : Implémenter la fonction d'ajout d'une œuvre.
 // @TODO : Mettre en place le mode édition.
