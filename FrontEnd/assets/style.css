@@ -269,6 +269,14 @@ footer {
     color: white;
 }
 
+/* page connecter */
+
+#edit {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
 /* page Log in */
 .modal-image {
     height: 102.57px;

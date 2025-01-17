@@ -121,11 +121,9 @@ function renderWorksInModal(works) {
  * Affiche le mode édition
  */
 function renderEditionMode() {
-  const edition = `<div class="modal">
-        <h1>Mode édition</h1>
-        <button id="edit">Editer</button>
-      </div>`;
-  document.body.insertAdjacentHTML("afterbegin", edition);
+  // const edition = `<button id="edit">Editer</button>`;
+  // document.body.innerHTML("afterbegin", edition);
+  document.getElementById("project").innerHTML += `<button id="edit">modifier</button>`;
 
   // @TODO : Afficher la bannière en haut de page.
   const banner = `<div class="banner">
