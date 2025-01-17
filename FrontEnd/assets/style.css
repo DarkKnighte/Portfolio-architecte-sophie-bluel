@@ -303,8 +303,10 @@ footer {
 
 .form-group input{
   width: 379px;
-  height: 40px;
-  font-size: 23px;
+  height: 51px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
 /* @TODO: Ré-arranger le style...*/
