@@ -1,5 +1,6 @@
 
 
+
 const data = {
   works: [],
   categories: []
@@ -199,9 +200,13 @@ async function deleteWork(id) {
   }
 }
 
-// @TODO : Revoir le style général.
 // @TODO : Revoir le style de la modale.
+// Pour afficher la corbeille en haut à droite d'une image, il faut la mettre en position absolue et positionner le bouton en haut à droite de l'image.
+// Le container parent doit être en position relative pour que le bouton soit positionné par rapport à l'image.
 // @TODO : Créer la seconde modale pour ajouter une œuvre.
 // @TODO : Créer le formulaire d'ajout de l'œuvre.
 // @TODO : Implémenter la fonction d'ajout d'une œuvre.
+// Utiliser un input de type file pour uploader une image.
+// Il est possible qu'il soit nécessaire d'utiliser un FileReader pour lire les données de l'image avant de les envoyer (après avoir vérifier la taille).
+// Utiliser l'objet FormData pour envoyer les données du formulaire.
 // @TODO : Mettre en place le mode édition.
