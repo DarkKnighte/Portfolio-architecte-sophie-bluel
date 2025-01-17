@@ -275,6 +275,7 @@ footer {
 .form-group input{
   width: 379px;
   height: 40px;
+  font-size: 23px;
 }
 
 /* @TODO: Ré-arranger le style...*/
