@@ -137,6 +137,8 @@ function renderEditionMode() {
   const modal = document.querySelector("#modal");
   const editButton = document.querySelector("#edit");
   const quitButton = document.querySelector("#quit");
+  const modalAdd = document.querySelector(".modal-add");
+  const addButton = document.querySelector("#add");
 
   editButton.addEventListener("click", (event) => {
     modal.showModal(); // Affiche la modal
@@ -144,6 +146,9 @@ function renderEditionMode() {
   });
   quitButton.addEventListener("click", (event) => {
     modal.close(); // Ferme la modal
+  });
+  addButton.addEventListener("click", (event) => {
+  modalAdd.showModal(); // Affiche la modal
   });
 
   // @TODO : Changer le texte "Login" à "Logout" dans le header.
@@ -199,6 +204,76 @@ async function deleteWork(id) {
     alert("Une erreur est survenue lors de la suppression de l'œuvre.")
   }
 }
+
+/**
+ * Affiche le formulaire d'ajout d'une œuvre.
+ */
+function renderAddWorkModal() {
+  const modalAdd = document.querySelector(".modal-add");
+  const formHtml = `
+    <form id="add-work-form">
+      <label for="image">Image</label>
+      <input type="file" id="image" name="image" accept="image/*" required>
+
+      <label for="title">Titre</label>
+      <input type="text" id="title" name="title" required>
+
+      <label for="category">Catégorie</label>
+      <select id="category" name="category" required>
+        ${data.categories.map(
+          (category) => `<option value="${category.id}">${category.name}</option>`
+        ).join("")}
+      </select>
+
+      <button type="submit">Ajouter</button>
+    </form>
+  `;
+  modalAdd.innerHTML = formHtml;
+
+  const addWorkForm = document.getElementById("add-work-form");
+  addWorkForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    await addWork();
+  });
+}
+
+/**
+ * Ajoute une nouvelle œuvre.
+ */
+async function addWork() {
+  const form = document.getElementById("add-work-form");
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: formData,
+    });
+
+    if (response.ok) {
+      const newWork = await response.json();
+      data.works.push(newWork); // Ajoute l'œuvre au tableau global.
+      renderWorks(data.works); // Met à jour la galerie principale.
+      renderWorksInModal(data.works); // Met à jour la galerie de la modale.
+      document.querySelector(".modal-add").close(); // Ferme la modale.
+      alert("Œuvre ajoutée avec succès !");
+    } else {
+      alert("Erreur lors de l'ajout de l'œuvre.");
+    }
+  } catch (error) {
+    console.error("Erreur lors de l'ajout de l'œuvre", error);
+    alert("Une erreur est survenue.");
+  }
+}
+
+// Intégrer l'appel de la deuxième modale dans le bouton.
+document.getElementById("add").addEventListener("click", () => {
+  renderAddWorkModal();
+  document.querySelector(".modal-add").showModal(); // Ouvre la modale.
+});
 
 // @TODO : Revoir le style de la modale.
 // Pour afficher la corbeille en haut à droite d'une image, il faut la mettre en position absolue et positionner le bouton en haut à droite de l'image.
