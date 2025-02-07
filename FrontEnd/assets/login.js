@@ -34,14 +34,14 @@ async function login(email, password) {
   // Si la réponse n'est pas OK (status différent de 200-299)
   if (!response.ok) {
     alert("Votre email ou mot de passe est incorrect");
+  } else {
+    // Convertit la réponse en JSON
+    const data = await response.json();
+
+    // Stocke le token d'authentification dans le localStorage
+    localStorage.setItem("token", data.token);
+
+    // Redirige vers la page d'accueil
+    window.location.href = "./index.html";
   }
-
-  // Convertit la réponse en JSON
-  const data = await response.json();
-
-  // Stocke le token d'authentification dans le localStorage
-  localStorage.setItem("token", data.token);
-
-  // Redirige vers la page d'accueil
-  window.location.href = "./index.html";
 }

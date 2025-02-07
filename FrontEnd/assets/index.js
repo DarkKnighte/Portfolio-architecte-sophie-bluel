@@ -243,7 +243,6 @@ function renderAddWorkModal() {
 async function addWork() {
   const form = document.getElementById("add-work-form");
   const formData = new FormData(form);
-
   try {
     const response = await fetch("http://localhost:5678/api/works", {
       method: "POST",
@@ -258,7 +257,7 @@ async function addWork() {
       data.works.push(newWork); // Ajoute l'œuvre au tableau global.
       renderWorks(data.works); // Met à jour la galerie principale.
       renderWorksInModal(data.works); // Met à jour la galerie de la modale.
-      document.querySelector(".modal-add").close(); // Ferme la modale.
+      document.querySelector("#modal-add").close(); // Ferme la modale.
       alert("Œuvre ajoutée avec succès !");
     } else {
       alert("Erreur lors de l'ajout de l'œuvre.");
@@ -275,13 +274,7 @@ document.getElementById("add").addEventListener("click", () => {
   document.querySelector(".modal-add").showModal(); // Ouvre la modale.
 });
 
-// @TODO : Revoir le style de la modale.
-// Pour afficher la corbeille en haut à droite d'une image, il faut la mettre en position absolue et positionner le bouton en haut à droite de l'image.
-// Le container parent doit être en position relative pour que le bouton soit positionné par rapport à l'image.
-// @TODO : Créer la seconde modale pour ajouter une œuvre.
-// @TODO : Créer le formulaire d'ajout de l'œuvre.
-// @TODO : Implémenter la fonction d'ajout d'une œuvre.
-// Utiliser un input de type file pour uploader une image.
-// Il est possible qu'il soit nécessaire d'utiliser un FileReader pour lire les données de l'image avant de les envoyer (après avoir vérifier la taille).
-// Utiliser l'objet FormData pour envoyer les données du formulaire.
-// @TODO : Mettre en place le mode édition.
+// @TODO: Cacher l'input file et afficher l'encadré d'ajout d'une photo (en tant que label pour déclencher l'input file).
+// @TODO: Vider le formulaire après envoi d'une nouvelle œuvre.
+// @TODO: (A vérifier) Vérifier la taille de l'image avant de l'envoyer à l'API.
+// @TODO: Refaire tout le style, et mieux gérer l'affichage des modales.
