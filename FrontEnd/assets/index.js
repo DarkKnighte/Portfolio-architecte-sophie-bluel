@@ -147,9 +147,9 @@ function renderEditionMode() {
   quitButton.addEventListener("click", (event) => {
     modal.close(); // Ferme la modal
   });
-  addButton.addEventListener("click", (event) => {
-  modalAdd.showModal(); // Affiche la modal
-  });
+  // addButton.addEventListener("click", (event) => {
+  // modalAdd.showModal(); // Affiche la modal
+  // });
 
   // @TODO : Changer le texte "Login" à "Logout" dans le header.
   document.getElementById("login");
