@@ -225,9 +225,10 @@ function renderAddWorkModal() {
         ).join("")}
       </select>
 
-      <button type="submit">Ajouter</button>
+      <button type="submit" type="reset">Ajouter</button> 
     </form>
   `;
+  // rajouter un type="reset" pour vider le formulaire ??
   modalAdd.innerHTML = formHtml;
 
   const addWorkForm = document.getElementById("add-work-form");
@@ -276,5 +277,6 @@ document.getElementById("add").addEventListener("click", () => {
 
 // @TODO: Cacher l'input file et afficher l'encadré d'ajout d'une photo (en tant que label pour déclencher l'input file).
 // @TODO: Vider le formulaire après envoi d'une nouvelle œuvre.
+formHtml.reset(); // ou rajouter un form.reset() ciblant les champs à vider ??
 // @TODO: (A vérifier) Vérifier la taille de l'image avant de l'envoyer à l'API.
 // @TODO: Refaire tout le style, et mieux gérer l'affichage des modales.
