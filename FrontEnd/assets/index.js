@@ -103,7 +103,7 @@ function renderWorksInModal(works) {
   // @TODO: Définir le HTML pour chaque élément (incluant la corbeille pour la suppression)
   works.forEach(work => {
     gallery.innerHTML += `
-      <div>
+      <div class="image-container">
         <img class="modal-image" src="${work.imageUrl}">
         <button class="delete" data-id="${work.id}">🗑️</button>
       </div>
@@ -225,7 +225,7 @@ function renderAddWorkModal() {
         ).join("")}
       </select>
 
-      <button type="submit">Ajouter</button>
+      <button class="add-photo-btn" type="submit">Ajouter une photo</button>
     </form>
   `;
   modalAdd.innerHTML = formHtml;

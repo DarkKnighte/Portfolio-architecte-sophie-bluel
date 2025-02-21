@@ -169,6 +169,47 @@ li:hover {
 
 }
 
+.delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.delete:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+}
+
+.add-photo-btn {
+  display: block;
+  margin: 20px auto;
+  background-color: #1D6154;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 60px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.add-photo-btn:hover {
+  background-color: #144B3A;
+}
+
 #contact {
     width: 50%;
     margin: auto;
