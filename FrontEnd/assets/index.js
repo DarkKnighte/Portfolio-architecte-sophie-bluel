@@ -124,7 +124,7 @@ function renderWorksInModal(works) {
 function renderEditionMode() {
   // const edition = `<button id="edit">Editer</button>`;
   // document.body.innerHTML("afterbegin", edition);
-  document.getElementById("project").innerHTML += `<button id="edit">modifier</button>`;
+  document.getElementById("project").innerHTML += `<button id="edit"><i class="fa-regular fa-pen-to-square" style="color: black;"></i> modifier</button>`;
 
   // @TODO : Afficher la bannière en haut de page.
   const banner = `<div class="banner">
@@ -276,6 +276,5 @@ document.getElementById("add").addEventListener("click", () => {
 });
 
 // @TODO: Cacher l'input file et afficher l'encadré d'ajout d'une photo (en tant que label pour déclencher l'input file).
-// @TODO: Vider le formulaire après envoi d'une nouvelle œuvre.
 // @TODO: (A vérifier) Vérifier la taille de l'image avant de l'envoyer à l'API.
 // @TODO: Refaire tout le style, et mieux gérer l'affichage des modales.

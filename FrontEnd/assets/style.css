@@ -206,6 +206,10 @@ li:hover {
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+#project {
+  position: relative;
+}
+
 input[type="submit"] {
     font-family: 'Syne';
     font-weight: 700;
@@ -272,9 +276,13 @@ footer {
 /* page connecter */
 
 #edit {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
+  position: absolute;
+  top: 7px;
+  left: 60%;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 /* page Log in */
