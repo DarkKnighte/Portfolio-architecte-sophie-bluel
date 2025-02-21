@@ -257,6 +257,7 @@ async function addWork() {
       data.works.push(newWork); // Ajoute l'œuvre au tableau global.
       renderWorks(data.works); // Met à jour la galerie principale.
       renderWorksInModal(data.works); // Met à jour la galerie de la modale.
+      document.querySelector("#add-work-form").reset(); // Réinitialise le formulaire.
       document.querySelector("#modal-add").close(); // Ferme la modale.
       alert("Œuvre ajoutée avec succès !");
     } else {
