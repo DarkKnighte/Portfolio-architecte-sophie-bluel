@@ -169,16 +169,29 @@ li:hover {
 
 }
 
+.add {
+  width: 237px;
+  height: 36px;
+  border-radius: 60px;
+  border: none;
+  color: white;
+  background-color: #1D6154;
+  font-family: 'Syne';
+  font-size: 14px;
+  line-height: 16.8px;
+  text-align: center;
+  margin-bottom: 45px;
+}
+
 .delete {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
+  top: 4px;
+  right: 6px;
+  background-color: black;
   border: none;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  border-radius: 2px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -326,10 +339,43 @@ footer {
   font-size: 14px;
 }
 
+.modal {
+  text-align: center;
+  width: 630px;
+  height: 688px;
+  border-radius: 10px;
+  border: none;
+}
+
+.modal h2 {
+  font-family: "Work sans";
+  font-weight: 400;
+  font-size: 30px;
+  color: black;
+  margin-top: 60px;
+}
+
+.quit {
+  position: relative;
+  border: none;
+  background-color: white;
+  bottom: 86px;
+  left: 290px;
+  font-size: 24px;
+}
+
+.modal-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 9px;
+  place-self: center;
+}
+
 /* page Log in */
 .modal-image {
     height: 102.57px;
     width: 76.86px;
+    margin-bottom: 29px;
     display: flex;
 }
 

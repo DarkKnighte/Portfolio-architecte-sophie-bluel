@@ -105,7 +105,7 @@ function renderWorksInModal(works) {
     gallery.innerHTML += `
       <div class="image-container">
         <img class="modal-image" src="${work.imageUrl}">
-        <button class="delete" data-id="${work.id}">🗑️</button>
+        <button class="delete" data-id="${work.id}"><i class="fa-solid fa-trash-can" style="color: #ffffff;"></i></button>
       </div>
   `;
   });
