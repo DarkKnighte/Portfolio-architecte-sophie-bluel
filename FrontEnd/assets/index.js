@@ -134,6 +134,7 @@ function renderEditionMode() {
   const modal = document.querySelector("#modal");
   const editButton = document.querySelector("#edit");
   const quitButton = document.querySelector("#quit");
+  const quitAllButton = document.querySelector("#quit-all");
   const modalAdd = document.querySelector(".modal-add");
   const addButton = document.querySelector("#add");
 
@@ -144,8 +145,9 @@ function renderEditionMode() {
   quitButton.addEventListener("click", (event) => {
     modal.close(); // Ferme la modal
   });
-  // addButton.addEventListener("click", (event) => {
-  // modalAdd.showModal(); // Affiche la modal
+  // quitAllButton.addEventListener("click", (event) => {
+  //   modal.close(); // Ferme la modal
+  //   modalAdd.close();
   // });
 
   // @TODO : Changer le texte "Login" à "Logout" dans le header.
