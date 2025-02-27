@@ -1,6 +1,3 @@
-
-
-
 const data = {
   works: [],
   categories: []
@@ -208,35 +205,46 @@ async function deleteWork(id) {
 /**
  * Affiche le formulaire d'ajout d'une œuvre.
  */
+// Fonction pour afficher le formulaire d'ajout d'une œuvre avec les catégories
 function renderAddWorkModal() {
-  const modalAdd = document.querySelector(".modal-add");
+  const modalAdd = document.getElementById("modal-add");
   const formHtml = `
     <form id="add-work-form">
-      <label for="image">Image</label>
-      <input type="file" id="image" name="image" accept="image/*" required>
+      <h2>Ajouter une œuvre</h2>
+      <label for="work-image">Image</label>
+      <input type="file" id="work-image" name="work-image" accept="image/*" required>
 
-      <label for="title">Titre</label>
-      <input type="text" id="title" name="title" required>
+      <label for="work-title">Titre</label>
+      <input type="text" id="work-title" name="work-title" required>
 
-      <label for="category">Catégorie</label>
-      <select id="category" name="category" required>
-        ${data.categories.map(
-          (category) => `<option value="${category.id}">${category.name}</option>`
-        ).join("")}
+      <label for="work-category">Catégorie</label>
+      <select id="work-category" name="work-category" required>
+        <option value="">Sélectionnez une catégorie</option>
+        ${data.categories.map(category => `
+          <option value="${category.id}">${category.name}</option>
+        `).join("")}
       </select>
 
-      <button class="add-photo-btn" type="submit">Ajouter une photo</button>
+      <div class="modal-actions">
+        <button type="submit">Ajouter</button>
+        <button type="button" id="cancel-add">Annuler</button>
+      </div>
     </form>
   `;
   modalAdd.innerHTML = formHtml;
 
+  // Ajouter un écouteur d'événement pour le formulaire
   const addWorkForm = document.getElementById("add-work-form");
   addWorkForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     await addWork();
   });
-}
 
+  // Ajouter un écouteur d'événement pour le bouton "Annuler"
+  document.getElementById("cancel-add").addEventListener("click", () => {
+    document.getElementById("modal-add").close();
+  });
+}
 /**
  * Ajoute une nouvelle œuvre.
  */
@@ -258,7 +266,7 @@ async function addWork() {
       renderWorks(data.works); // Met à jour la galerie principale.
       renderWorksInModal(data.works); // Met à jour la galerie de la modale.
       document.querySelector("#add-work-form").reset(); // Réinitialise le formulaire.
-      document.querySelector("#modal-add").close(); // Ferme la modale.
+      document.getElementById("modal-add").close(); // Ferme la modale.
       alert("Œuvre ajoutée avec succès !");
     } else {
       alert("Erreur lors de l'ajout de l'œuvre.");
@@ -269,10 +277,10 @@ async function addWork() {
   }
 }
 
-// Intégrer l'appel de la deuxième modale dans le bouton.
+// Ajouter un écouteur d'événement pour le bouton "Ajouter une photo"
 document.getElementById("add").addEventListener("click", () => {
-  renderAddWorkModal();
-  document.querySelector(".modal-add").showModal(); // Ouvre la modale.
+  renderAddWorkModal(); // Remplir le formulaire avec les catégories
+  document.getElementById("modal-add").showModal(); // Ouvrir la modale
 });
 
 // @TODO: Cacher l'input file et afficher l'encadré d'ajout d'une photo (en tant que label pour déclencher l'input file).

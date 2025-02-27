@@ -353,13 +353,14 @@ footer {
   font-size: 30px;
   color: black;
   margin-top: 60px;
+  margin-bottom: 46px;
 }
 
 .quit {
   position: relative;
   border: none;
   background-color: white;
-  bottom: 86px;
+  bottom: 125px;
   left: 290px;
   font-size: 24px;
 }
