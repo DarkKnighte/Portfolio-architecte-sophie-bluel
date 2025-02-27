@@ -210,8 +210,8 @@ function renderAddWorkModal() {
   const modalAdd = document.getElementById("modal-add");
   const formHtml = `
     <form id="add-work-form">
-      <h2>Ajouter une œuvre</h2>
-      <label for="work-image">Image</label>
+      <h2>Ajout photo</h2>
+      <label for="work-image" style="margin: 0;"></label>
       <input type="file" id="work-image" name="work-image" accept="image/*" required>
 
       <label for="work-title">Titre</label>
@@ -219,15 +219,16 @@ function renderAddWorkModal() {
 
       <label for="work-category">Catégorie</label>
       <select id="work-category" name="work-category" required>
-        <option value="">Sélectionnez une catégorie</option>
+        <option value=""></option>
         ${data.categories.map(category => `
           <option value="${category.id}">${category.name}</option>
         `).join("")}
       </select>
 
       <div class="modal-actions">
-        <button type="submit">Ajouter</button>
-        <button type="button" id="cancel-add">Annuler</button>
+        <button type="submit" class="add-button">Valider</button>
+        <button type="button" id="cancel-add"><i class="fa-solid fa-arrow-left" style="color: #000000;"></i></button>
+        <button class="quit-all" id="quit-all"><i class="fa-solid fa-xmark" style="color: #000000;"></i></button>
       </div>
     </form>
   `;
