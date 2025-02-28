@@ -129,7 +129,6 @@ function renderEditionMode() {
     <p id="banner-edit"> Mode édition</p>
     </div>`;
   document.body.insertAdjacentHTML("afterbegin", banner);
-  // @TODO : Afficher le bouton pour ouvrir la modale au bon emplacement.
 
   const modal = document.querySelector("#modal");
   const editButton = document.querySelector("#edit");
