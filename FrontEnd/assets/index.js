@@ -150,7 +150,6 @@ function renderEditionMode() {
   //   modalAdd.close();
   // });
 
-  // @TODO : Changer le texte "Login" à "Logout" dans le header.
   document.getElementById("login");
   login.innerHTML = "logout";
   login.addEventListener("click", (event) => {
