@@ -133,7 +133,6 @@ function renderEditionMode() {
   const modal = document.querySelector("#modal");
   const editButton = document.querySelector("#edit");
   const quitButton = document.querySelector("#quit");
-  const quitAllButton = document.querySelector("#quit-all");
   const modalAdd = document.querySelector(".modal-add");
   const addButton = document.querySelector("#add");
 
@@ -144,10 +143,6 @@ function renderEditionMode() {
   quitButton.addEventListener("click", (event) => {
     modal.close(); // Ferme la modal
   });
-  // quitAllButton.addEventListener("click", (event) => {
-  //   modal.close(); // Ferme la modal
-  //   modalAdd.close();
-  // });
 
   document.getElementById("login");
   login.innerHTML = "logout";
@@ -239,6 +234,12 @@ function renderAddWorkModal() {
   addWorkForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     await addWork();
+  });
+
+  const quitAllButton = document.querySelector("#quit-all");
+  quitAllButton.addEventListener("click", (event) => {
+    modal.close(); // Ferme la modal
+    modalAdd.close();
   });
 
   // Ajouter un écouteur d'événement pour le bouton "Annuler"
