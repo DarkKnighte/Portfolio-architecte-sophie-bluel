@@ -58,27 +58,27 @@
     </section>
   </main>
   <aside>
-    <dialog id="modal">
+    <dialog class="modal" id="modal">
       <div class="modal-header">
         <h2>Galerie photo</h2>
-        <button id="quit">X</button>
+        <button class="quit" id="quit"><i class="fa-solid fa-xmark" style="color: #000000;"></i></button>
       </div>
       <div class="modal-gallery"></div>
       <div class="modal-add">
-        <button id="add">Ajouter</button>
+        <button class="add" id="add">Ajouter une photo</button>
       </div>
     </dialog>
     <dialog id="modal-add">
-      <form id="add-work-form">
+      <!-- <form id="add-work-form">
         <h2>Ajouter une œuvre</h2>
         <label for="work-title">Titre</label>
         <input type="text" id="work-title" name="work-title" required>
 
         <label for="work-category">Catégorie</label>
         <select id="work-category" name="work-category" required>
-          <option value="">Sélectionnez une catégorie</option>
+          <option value="">Sélectionnez une catégorie</option> -->
           <!-- Les options seront injectées dynamiquement via JavaScript -->
-        </select>
+        <!-- </select>
 
         <label for="work-image">Image</label>
         <input type="file" id="work-image" name="work-image" accept="image/*" required>
@@ -87,7 +87,7 @@
           <button type="submit">Ajouter</button>
           <button type="button" id="cancel-add">Annuler</button>
         </div>
-      </form>
+      </form> -->
     </dialog>
   </aside>
   <footer>

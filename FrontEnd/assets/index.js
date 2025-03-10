@@ -1,6 +1,3 @@
-
-
-
 const data = {
   works: [],
   categories: []
@@ -103,9 +100,9 @@ function renderWorksInModal(works) {
   // @TODO: Définir le HTML pour chaque élément (incluant la corbeille pour la suppression)
   works.forEach(work => {
     gallery.innerHTML += `
-      <div>
+      <div class="image-container">
         <img class="modal-image" src="${work.imageUrl}">
-        <button class="delete" data-id="${work.id}">🗑️</button>
+        <button class="delete" data-id="${work.id}"><i class="fa-solid fa-trash-can" style="color: #ffffff;"></i></button>
       </div>
   `;
   });
@@ -124,7 +121,7 @@ function renderWorksInModal(works) {
 function renderEditionMode() {
   // const edition = `<button id="edit">Editer</button>`;
   // document.body.innerHTML("afterbegin", edition);
-  document.getElementById("project").innerHTML += `<button id="edit">modifier</button>`;
+  document.getElementById("project").innerHTML += `<button id="edit"><i class="fa-regular fa-pen-to-square" style="color: black;"></i> modifier</button>`;
 
   // @TODO : Afficher la bannière en haut de page.
   const banner = `<div class="banner">
@@ -132,7 +129,6 @@ function renderEditionMode() {
     <p id="banner-edit"> Mode édition</p>
     </div>`;
   document.body.insertAdjacentHTML("afterbegin", banner);
-  // @TODO : Afficher le bouton pour ouvrir la modale au bon emplacement.
 
   const modal = document.querySelector("#modal");
   const editButton = document.querySelector("#edit");
@@ -147,11 +143,7 @@ function renderEditionMode() {
   quitButton.addEventListener("click", (event) => {
     modal.close(); // Ferme la modal
   });
-  // addButton.addEventListener("click", (event) => {
-  // modalAdd.showModal(); // Affiche la modal
-  // });
 
-  // @TODO : Changer le texte "Login" à "Logout" dans le header.
   document.getElementById("login");
   login.innerHTML = "logout";
   login.addEventListener("click", (event) => {
@@ -161,7 +153,7 @@ function renderEditionMode() {
   });
 
   // Ajuste le style de la page pour laisser de la place pour la bannière en haut de page.
-  document.body.style.marginTop = "59px";
+  document.body.style.marginTop = "85px";
 }
 
 /**
@@ -208,36 +200,53 @@ async function deleteWork(id) {
 /**
  * Affiche le formulaire d'ajout d'une œuvre.
  */
+// Fonction pour afficher le formulaire d'ajout d'une œuvre avec les catégories
 function renderAddWorkModal() {
-  const modalAdd = document.querySelector(".modal-add");
+  const modalAdd = document.getElementById("modal-add");
   const formHtml = `
     <form id="add-work-form">
-      <label for="image">Image</label>
-      <input type="file" id="image" name="image" accept="image/*" required>
+      <h2>Ajout photo</h2>
+      <label for="work-image" style="margin: 0;"></label>
+      <input type="file" id="work-image" name="work-image" accept="image/*" required>
 
-      <label for="title">Titre</label>
-      <input type="text" id="title" name="title" required>
+      <label for="work-title">Titre</label>
+      <input type="text" id="work-title" name="work-title" required>
 
-      <label for="category">Catégorie</label>
-      <select id="category" name="category" required>
-        ${data.categories.map(
-          (category) => `<option value="${category.id}">${category.name}</option>`
-        ).join("")}
+      <label for="work-category">Catégorie</label>
+      <select id="work-category" name="work-category" required>
+        <option value=""></option>
+        ${data.categories.map(category => `
+          <option value="${category.id}">${category.name}</option>
+        `).join("")}
       </select>
 
-      <button type="submit" type="reset">Ajouter</button> 
+      <div class="modal-actions">
+        <button type="submit" class="add-button">Valider</button>
+        <button type="button" id="cancel-add"><i class="fa-solid fa-arrow-left" style="color: #000000;"></i></button>
+        <button class="quit-all" id="quit-all"><i class="fa-solid fa-xmark" style="color: #000000;"></i></button>
+      </div>
     </form>
   `;
-  // rajouter un type="reset" pour vider le formulaire ??
   modalAdd.innerHTML = formHtml;
 
+  // Ajouter un écouteur d'événement pour le formulaire
   const addWorkForm = document.getElementById("add-work-form");
   addWorkForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     await addWork();
   });
-}
 
+  const quitAllButton = document.querySelector("#quit-all");
+  quitAllButton.addEventListener("click", (event) => {
+    modal.close(); // Ferme la modal
+    modalAdd.close();
+  });
+
+  // Ajouter un écouteur d'événement pour le bouton "Annuler"
+  document.getElementById("cancel-add").addEventListener("click", () => {
+    document.getElementById("modal-add").close();
+  });
+}
 /**
  * Ajoute une nouvelle œuvre.
  */
@@ -258,7 +267,8 @@ async function addWork() {
       data.works.push(newWork); // Ajoute l'œuvre au tableau global.
       renderWorks(data.works); // Met à jour la galerie principale.
       renderWorksInModal(data.works); // Met à jour la galerie de la modale.
-      document.querySelector("#modal-add").close(); // Ferme la modale.
+      document.querySelector("#add-work-form").reset(); // Réinitialise le formulaire.
+      document.getElementById("modal-add").close(); // Ferme la modale.
       alert("Œuvre ajoutée avec succès !");
     } else {
       alert("Erreur lors de l'ajout de l'œuvre.");
@@ -269,14 +279,12 @@ async function addWork() {
   }
 }
 
-// Intégrer l'appel de la deuxième modale dans le bouton.
+// Ajouter un écouteur d'événement pour le bouton "Ajouter une photo"
 document.getElementById("add").addEventListener("click", () => {
-  renderAddWorkModal();
-  document.querySelector(".modal-add").showModal(); // Ouvre la modale.
+  renderAddWorkModal(); // Remplir le formulaire avec les catégories
+  document.getElementById("modal-add").showModal(); // Ouvrir la modale
 });
 
 // @TODO: Cacher l'input file et afficher l'encadré d'ajout d'une photo (en tant que label pour déclencher l'input file).
-// @TODO: Vider le formulaire après envoi d'une nouvelle œuvre.
-formHtml.reset(); // ou rajouter un form.reset() ciblant les champs à vider ??
 // @TODO: (A vérifier) Vérifier la taille de l'image avant de l'envoyer à l'API.
 // @TODO: Refaire tout le style, et mieux gérer l'affichage des modales.
