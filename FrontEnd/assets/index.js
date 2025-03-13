@@ -205,6 +205,10 @@ function renderAddWorkModal() {
   const modalAdd = document.getElementById("modal-add");
   const formHtml = `
     <form id="add-work-form">
+      <div class="button-header">
+          <button type="button" id="cancel-add"><i class="fa-solid fa-arrow-left" style="color: #000000;"></i></button>
+          <button class="quit-all" id="quit-all"><i class="fa-solid fa-xmark" style="color: #000000;"></i></button>
+      </div>
       <h2>Ajout photo</h2>
       <label for="work-image" style="margin: 0;"></label>
       <input type="file" id="work-image" name="work-image" accept="image/*" required>
@@ -222,8 +226,6 @@ function renderAddWorkModal() {
 
       <div class="modal-actions">
         <button type="submit" class="add-button">Valider</button>
-        <button type="button" id="cancel-add"><i class="fa-solid fa-arrow-left" style="color: #000000;"></i></button>
-        <button class="quit-all" id="quit-all"><i class="fa-solid fa-xmark" style="color: #000000;"></i></button>
       </div>
     </form>
   `;

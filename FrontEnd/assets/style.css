@@ -468,21 +468,21 @@ footer {
 }
 
 #cancel-add {
-  position: relative;
   border: none;
   background-color: white;
-  bottom: 565px;
-  right: 411px;
   font-size: 21px;
 }
 
 .quit-all {
-  position: relative;
   border: none;
   background-color: white;
-  bottom: 565px;
-  left: 160px;
   font-size: 24px;
+}
+
+.button-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px -100px 0px -100px;
 }
 
 .add-button {
