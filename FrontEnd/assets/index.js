@@ -248,6 +248,19 @@ function renderAddWorkModal() {
   document.getElementById("cancel-add").addEventListener("click", () => {
     document.getElementById("modal-add").close();
   });
+
+  const inputs = document.querySelectorAll("#add-work-form input, #add-work-form select");
+  inputs.forEach(input => {
+    input.addEventListener("input", () => {
+      const allFilled = Array.from(inputs).every(input => input.value.trim() !== "");
+      const submitButton = document.querySelector("#add-work-form .add-button");
+      if (allFilled) {
+        submitButton.style.backgroundColor = "green";
+      } else {
+        submitButton.style.backgroundColor = "";
+      }
+    });
+  });
 }
 /**
  * Ajoute une nouvelle œuvre.
