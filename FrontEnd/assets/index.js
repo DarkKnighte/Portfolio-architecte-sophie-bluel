@@ -204,26 +204,26 @@ async function deleteWork(id) {
 function renderAddWorkModal() {
   const modalAdd = document.getElementById("modal-add");
   const formHtml = `
+    <div class="button-header">
+      <button type="button" id="cancel-add"><i class="fa-solid fa-arrow-left" style="color: #000000;"></i></button>
+      <button class="quit-all" id="quit-all"><i class="fa-solid fa-xmark" style="color: #000000;"></i></button>
+    </div>
     <form id="add-work-form">
-      <div class="button-header">
-          <button type="button" id="cancel-add"><i class="fa-solid fa-arrow-left" style="color: #000000;"></i></button>
-          <button class="quit-all" id="quit-all"><i class="fa-solid fa-xmark" style="color: #000000;"></i></button>
-      </div>
       <h2>Ajout photo</h2>
       <label id="work-image-label" for="work-image" style="margin-bottom: 30px;">
       <div id="label-image">
         <i class="fa-regular fa-image"></i>
       </div>
-      <button id="label-button">+ Ajouter photo</button>
+      <p id="label-button">+ Ajouter photo</p>
       <p id="label-paragraph">jpg, png : 4mo max</p>
       </label>
-      <input type="file" id="work-image" name="work-image" accept="image/*" required>
+      <input type="file" id="work-image" name="image" accept="image/*" required>
 
       <label for="work-title">Titre</label>
-      <input type="text" id="work-title" name="work-title" required>
+      <input type="text" id="work-title" name="title" required>
 
       <label for="work-category">Catégorie</label>
-      <select id="work-category" name="work-category" required>
+      <select id="work-category" name="category" required>
         <option value=""></option>
         ${data.categories.map(category => `
           <option value="${category.id}">${category.name}</option>
@@ -277,12 +277,10 @@ function renderAddWorkModal() {
         const imagePreview = document.createElement("img");
         imagePreview.src = e.target.result;
         imagePreview.style.width = "129px";
-        imagePreview.style.height = "169px";
-        imagePreview.style.display = "block";
-        imagePreview.style.margin = "0 auto 30px";
-        imagePreview.style.backgroundColor = "#E8F1F6";
+        imagePreview.style.height = "100%";
         workImageInput.style.display = "none";
         workImageInput.insertAdjacentElement("afterend", imagePreview);
+        document.querySelector("#work-image-label").replaceChildren(imagePreview);
       };
       reader.readAsDataURL(file);
     }
@@ -325,7 +323,3 @@ document.getElementById("add").addEventListener("click", () => {
   renderAddWorkModal(); // Remplir le formulaire avec les catégories
   document.getElementById("modal-add").showModal(); // Ouvrir la modale
 });
-
-// @TODO: Cacher l'input file et afficher l'encadré d'ajout d'une photo (en tant que label pour déclencher l'input file).
-// @TODO: (A vérifier) Vérifier la taille de l'image avant de l'envoyer à l'API.
-// @TODO: Refaire tout le style, et mieux gérer l'affichage des modales.

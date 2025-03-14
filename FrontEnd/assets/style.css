@@ -429,6 +429,9 @@ footer {
 }
 
 #label-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 173px;
   height: 36px;
   border-radius: 50px;
@@ -436,6 +439,9 @@ footer {
   background-color: #CBD6DC;
   border: none;
   margin: 6px 0px 7px 0px;
+  font-family: "Work Sans";
+  font-weight: 500;
+  font-size: 14px;
 }
 
 #label-image {
@@ -512,7 +518,6 @@ footer {
 .button-header {
   display: flex;
   justify-content: space-between;
-  margin: 0px -100px 0px -100px;
 }
 
 .add-button {
