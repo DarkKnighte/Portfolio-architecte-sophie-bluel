@@ -255,11 +255,31 @@ function renderAddWorkModal() {
       const allFilled = Array.from(inputs).every(input => input.value.trim() !== "");
       const submitButton = document.querySelector("#add-work-form .add-button");
       if (allFilled) {
-        submitButton.style.backgroundColor = "green";
+        submitButton.style.backgroundColor = "#1D6154";
       } else {
         submitButton.style.backgroundColor = "";
       }
     });
+  });
+
+  const workImageInput = document.getElementById("work-image");
+  workImageInput.addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const imagePreview = document.createElement("img");
+        imagePreview.src = e.target.result;
+        imagePreview.style.width = "129px";
+        imagePreview.style.height = "169px";
+        imagePreview.style.display = "block";
+        imagePreview.style.margin = "0 auto 30px";
+        imagePreview.style.backgroundColor = "#E8F1F6";
+        workImageInput.style.display = "none";
+        workImageInput.insertAdjacentElement("afterend", imagePreview);
+      };
+      reader.readAsDataURL(file);
+    }
   });
 }
 /**
