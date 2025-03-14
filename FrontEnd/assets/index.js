@@ -210,7 +210,13 @@ function renderAddWorkModal() {
           <button class="quit-all" id="quit-all"><i class="fa-solid fa-xmark" style="color: #000000;"></i></button>
       </div>
       <h2>Ajout photo</h2>
-      <label for="work-image" style="margin: 0;"></label>
+      <label id="work-image-label" for="work-image" style="margin-bottom: 30px;">
+      <div id="label-image">
+        <i class="fa-regular fa-image"></i>
+      </div>
+      <button id="label-button">+ Ajouter photo</button>
+      <p id="label-paragraph">jpg, png : 4mo max</p>
+      </label>
       <input type="file" id="work-image" name="work-image" accept="image/*" required>
 
       <label for="work-title">Titre</label>

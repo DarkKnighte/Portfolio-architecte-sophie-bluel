@@ -418,10 +418,40 @@ footer {
   border: none;
 }
 
-#work-image {
+#work-image-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   height: 169px;
   background-color: #E8F1F6;
   margin-bottom: 30px;
+}
+
+#label-button {
+  width: 173px;
+  height: 36px;
+  border-radius: 50px;
+  color: #306685;
+  background-color: #CBD6DC;
+  border: none;
+  margin: 6px 0px 7px 0px;
+}
+
+#label-image {
+  font-size: 76px;
+  color: #b9c5cc;
+}
+
+#label-paragraph {
+  width: 94px;
+  height: 12px;
+  font-family: "Work Sans";
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  text-align: center;
+  color: #444444;
 }
 
 #add-work-form h2 {
@@ -503,4 +533,8 @@ footer {
 
 .mode-edition {
   display: block;
+}
+
+#work-image {
+  display: none;
 }
