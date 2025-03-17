@@ -175,7 +175,8 @@ li:hover {
 }
 
 .gallery img {
-  width: 100%;
+  width:366px;
+  height: 490px;
 }
 
 .add {
