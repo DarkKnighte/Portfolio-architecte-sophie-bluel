@@ -58,8 +58,15 @@ table {
   border-spacing: 0;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 /** end reset css**/
 body {
+  display: flex;
+  flex-direction: column;
   max-width: 1140px;
   margin: auto;
   font-family: 'Work Sans';
@@ -121,6 +128,10 @@ nav a:hover {
 
 li:hover {
   color: #B1663C;
+}
+
+#content {
+  flex: 1 0 auto; /* Cette propriété permet au contenu de s'étendre et de pousser le footer vers le bas */
 }
 
 #introduction {
@@ -280,6 +291,7 @@ footer nav ul {
 }
 
 footer {
+  flex-shrink: 0; /* Empêche le footer de rétrécir */
   background-color: white;
 }
 
