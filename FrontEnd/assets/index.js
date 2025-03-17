@@ -153,7 +153,7 @@ function renderEditionMode() {
   });
 
   // Ajuste le style de la page pour laisser de la place pour la bannière en haut de page.
-  document.body.style.marginTop = "85px";
+  document.body.style.marginTop = "38px";
 }
 
 /**
