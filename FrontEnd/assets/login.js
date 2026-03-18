@@ -1,3 +1,4 @@
+// 2ème point
 // Attend que le DOM soit complètement chargé avant d'exécuter le code
 document.addEventListener("DOMContentLoaded", function () {
   // Récupère le formulaire de connexion par son ID

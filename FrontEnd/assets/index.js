@@ -44,6 +44,7 @@ async function getCategories() {
   }
 }
 
+// 1er point
 /**
 * Affiche les filtres de catégories et ajoute les écouteurs d'événements sur chacun d'entre eux.
 * @param categories Liste des catégories à afficher en tant que filtres
@@ -69,7 +70,7 @@ function renderFilters(categories) {
     })
   })
 }
-
+// 1er point
 /**
 * Affiche les œuvres dans la galerie
 * @param works Liste des œuvres à afficher
@@ -196,7 +197,7 @@ async function deleteWork(id) {
     alert("Une erreur est survenue lors de la suppression de l'œuvre.")
   }
 }
-
+// 3ème point
 /**
  * Affiche le formulaire d'ajout d'une œuvre.
  */
@@ -240,7 +241,7 @@ function renderAddWorkModal() {
   // Ajouter un écouteur d'événement pour le formulaire
   const addWorkForm = document.getElementById("add-work-form");
   addWorkForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
+    evnet.preventDefault();
     await addWork();
   });
 
@@ -286,6 +287,7 @@ function renderAddWorkModal() {
     }
   });
 }
+// 3ème point
 /**
  * Ajoute une nouvelle œuvre.
  */
